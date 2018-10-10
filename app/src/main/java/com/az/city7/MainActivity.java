@@ -1,5 +1,6 @@
 package com.az.city7;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -14,11 +15,15 @@ public class MainActivity extends AppCompatActivity {
 
         final Button bt1 = (Button) findViewById(R.id.button);
         bt1.setOnClickListener(new View.OnClickListener() {
-            @Override
+
+           // @Override
 
             public void onClick(View v) {
 
-                bt1.setText("Automatically created a listener!");
+                Intent intent = new Intent(v.getContext(), CreateActivity.class );
+                startActivityForResult(intent, 0);
+
+               // bt1.setText("Automatically created a listener!");
 
             }
         });
