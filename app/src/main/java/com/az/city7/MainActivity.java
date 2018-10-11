@@ -13,8 +13,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.aurora.myweb3j.util.Alice;
-import com.example.aurora.myweb3j.util.Web3jConstants;
+//import com.example.aurora.myweb3j.util.Alice;
+//import com.example.aurora.myweb3j.util.Web3jConstants;
 
 import org.web3j.protocol.Web3j;
 import org.web3j.protocol.Web3jFactory;
@@ -38,20 +38,50 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        String TAG = "Return";
 
-        final Button bt1 = (Button) findViewById(R.id.button);
-        bt1.setOnClickListener(new View.OnClickListener() {
+        //connect to the ethereum client node
+        Start_Connect();
+        // show client details
+        Web3ClientVersion client = null;
+        try {
+            client = web3j
+                    .web3ClientVersion()
+                    .sendAsync()
+                    .get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        Log.d(TAG, "Connected to " + client.getWeb3ClientVersion() + "\n");
 
-           // @Override
 
-            public void onClick(View v) {
-
-                Intent intent = new Intent(v.getContext(), CreateActivity.class );
-                startActivityForResult(intent, 0);
+    }
 
 
 
-            }
-        });
+    //when uer clicking the "register" button
+    public void onRegister(View view){
+
+        final Intent intent_register = new Intent(getApplicationContext(), CreateActivity.class);
+        startActivity(intent_register);
+
+    }
+
+
+    //connect the moible device to the ethereum client node
+    public void Start_Connect() {
+        clientUrl = argsToUrl();
+        web3j = Web3jFactory.build(new HttpService(clientUrl));
+    }
+
+
+    //connection port and ip
+    public String argsToUrl() {
+        String ip = "10.0.2.2";//ZT
+        String port = "8545";//ZT
+
+        return String.format("http://%s:%s", ip, port);
     }
 }
