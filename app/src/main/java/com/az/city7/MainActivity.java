@@ -34,12 +34,25 @@ public class MainActivity extends AppCompatActivity {
     static String clientUrl = null;
     static String[] accounts = new String[15];
 
+    Button bt1 ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        String TAG = "Return";
 
+        bt1 = (Button) findViewById(R.id.button);
+        bt1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent myIntent = new Intent (MainActivity.this, CreateActivity.class);
+                startActivity(myIntent);
+            }
+        });
+
+
+        String TAG = "Return";
+/*
         //connect to the ethereum client node
         Start_Connect();
         // show client details
@@ -56,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         }
         Log.d(TAG, "Connected to " + client.getWeb3ClientVersion() + "\n");
 
-
+*/
     }
 
 
@@ -66,6 +79,8 @@ public class MainActivity extends AppCompatActivity {
 
         final Intent intent_register = new Intent(getApplicationContext(), CreateActivity.class);
         startActivity(intent_register);
+
+
 
     }
 

@@ -3,6 +3,8 @@ package com.az.city7;
 import android.os.Bundle;
 import android.app.Activity;
 import android.util.Log;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import org.web3j.crypto.ECKeyPair;
 import org.web3j.crypto.Keys;
@@ -18,6 +20,7 @@ public class CreateActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create);
 
+        final String ERROR = "aaa";
         // create new private/public key pair
         final ECKeyPair[] keyPair = {null};
         try {
@@ -31,6 +34,12 @@ public class CreateActivity extends Activity {
             e.printStackTrace();
             Log.e(ERROR,"No Such Provider Exception");
         }
+
+        WebView webView = (WebView) findViewById(R.id.webView);
+        webView.loadUrl("http://www.google.com");
+
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.setWebViewClient(new WebViewClient());
 
     }
 

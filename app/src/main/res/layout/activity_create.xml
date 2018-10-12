@@ -67,4 +67,11 @@
         android:text="End Date"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText3" />
+
+    <WebView
+        android:id="@+id/webView"
+        android:layout_width="368dp"
+        android:layout_height="89dp"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="371dp" />
 </android.support.constraint.ConstraintLayout>
